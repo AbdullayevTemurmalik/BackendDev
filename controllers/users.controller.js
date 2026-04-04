@@ -46,6 +46,26 @@ const postRegister = async (req, res) => {
     });
   }
 };
+//  ----------------Get users-----------------
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json({
+      success: true,
+      message: "Barcha foydalanuvchilar royxati olingan",
+      innerData: users,
+    });
+  } catch (error) {
+    console.error("Xato:", error);
+    res.status(500).json({
+      success: false,
+      message:
+        "Server xatosi: Foydalanuvchilar royxati olishda xatolik yuz berdi",
+    });
+  }
+};
+
 module.exports = {
   postRegister,
+  getUsers,
 };
