@@ -115,6 +115,8 @@ const deleteUserById = async (req, res) => {
   }
 };
 
+//  ----------------Update user by id-----------------
+
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
