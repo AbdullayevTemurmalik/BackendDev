@@ -1,4 +1,6 @@
 const { User } = require("../model/userSchema");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const postRegister = async (req, res) => {
   try {
@@ -22,9 +24,10 @@ const postRegister = async (req, res) => {
         message: "Bu nom bilan royxatdan o'tgan foydalanuvchi mavjud",
       });
     } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = new User({
         username,
-        password,
+        password: hashedPassword,
         firstname,
         lastname,
         birthday,
@@ -124,7 +127,13 @@ const updateUser = async (req, res) => {
 
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { username, lastname, phone, address, password },
+      {
+        username,
+        lastname,
+        phone,
+        address,
+        password: await bcrypt.hash(password, 10),
+      },
       { new: true },
     );
     if (!updatedUser) {
