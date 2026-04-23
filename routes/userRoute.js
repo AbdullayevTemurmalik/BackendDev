@@ -147,7 +147,30 @@ users.post("/login", postLogin);
  *         description: Ichki server xatosi
  */
 users.get("/all", getUsers);
-users.get("/search", searchUsers);
+
+/**
+ * @swagger
+ * /users/searchUser:
+ *   get:
+ *     summary: Foydalanuvchilarni qidirish
+ *     tags: [Users]
+ *     description: Foydalanuvchilarni qidirish (masalan, ism yoki email bo‘yicha)
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         description: Qidiruv so‘rovi orqali foydalanuvchini izlash
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Qidiruv natijalari muvaffaqiyatli qaytarildi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Ichki server xatosi
+ */
+users.get("/searchUser", searchUsers);
 
 /**
  * @swagger
