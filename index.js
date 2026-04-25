@@ -50,7 +50,7 @@ const { House } = require("./routes/houseRoute");
 app.use("/house", House);
 
 const { CarRoute } = require("./routes/carRoute");
-app.use("/car", CarRoute);
+app.use("/cars", CarRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
